@@ -1,3 +1,4 @@
+
 /**
  * @author Laura Karp
  * Class ID: 70642
@@ -12,10 +13,12 @@ public class AddingMachine {
 
 	
 	/**
-	 * Global variable
+	 * Global variables
 	 */
 	private int total;
 	
+	// string starts with 0 since 0 is the initial value 
+	private String str = "0"; 
 	
 	/**
      * A constructor for the AddingMachine class
@@ -27,40 +30,80 @@ public class AddingMachine {
 	
 	/**
      * method to determine the total
-     * @return 0
+     * @return total total is the current overall total
      */
 	public int getTotal () {
-		return 0;
+		return total;
 	}
 	
 	/**
      * method that adds values
-     * @param value value is an int that will be added
+     * @param value value is an int that will be added to the total
      */
 	public void add (int value) {
 		
+		// adding the parameter to the global total variable
+		total = total + value;
+		
+		// keeping track of subtract transactions
+		str = str + " + " + value; 
 	}
 	
 	/**
      * method that subtracts values
-     * @param value value is an int that will be subtracted
+     * @param value value is an int that will be subtracted from total
      */
 	public void subtract (int value) {
 		
+		// subtracting the value parameter from the global total variable
+		total = total - value;
+		
+		// keeping track of subtract transactions
+		str = str + " - " + value; 
 	}
 		
 	/**
      * method that changes input to a string type
-     * @return "" "" is an empty string
+     * @return str str is a string that holds all history transactions from the program
      */
 	public String toString () {
-		return "";
+		return str;
 	}
 
 	/**
      * method that clears input, simulates a clear button on a calculator
      */
-	public void clear() {
-	
+	public void clear() {  
+		// setting the string to empty and total to 0 to clear out previous input values
+		str = "";
+		total = 0;
 	}
+
+	
+	/**
+     * main method created for testing purposes
+     * @param String[] args default parameter for main method
+     */
+	public static void main(String[] args) {
+		
+		// creating object of AddingMachine class
+		AddingMachine myCalculator = new AddingMachine();
+		
+		// using examples from guideline document to use add and subtract methods
+		myCalculator.add (4); 
+		myCalculator.subtract(2); 
+		myCalculator.add(5);
+		
+		// testing the toString method to match example output given in guidelines	
+        System.out.println(myCalculator.toString());
+        
+        // testing the getTotal method
+        System.out.println(myCalculator.getTotal());
+        
+        // testing clear method
+        myCalculator.clear();
+        System.out.print(myCalculator);
+        System.out.print(myCalculator.getTotal());
+        
+    }
 }
